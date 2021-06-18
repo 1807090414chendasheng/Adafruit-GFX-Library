@@ -420,6 +420,34 @@ void Adafruit_GFX::drawMouse(int16_t x0, int16_t y0,
     drawCircle(x4,y4,r2,color);
 
 }
+// Draw a Hexagram
+void Adafruit_GFX::drawHexagram(int16_t x0, int16_t y0,
+        int16_t r0, uint16_t color) {
+    int xa, ya;
+    int xb, yb;
+    int xc, yc;
+    int xd, yd;
+    int xe, ye;
+    int xf, yf;
+    xa = x0;
+    ya = y0 - r0;
+    xb = x0 + r0 * cos(PI / 180 * 30);
+    yb = y0 - r0 * sin(PI / 180 * 30);
+    xc = x0 + r0 * cos(PI / 180 * 30);
+    yc = y0 + r0 * sin(PI / 180 * 30);
+    xd = x0;
+    yd = y0 + r0;
+    xe = x0 - r0 * cos(PI / 180 * 30);
+    ye = y0 + r0 * sin(PI / 180 * 30);
+    xf = x0 - r0 * cos(PI / 180 * 30);
+    yf = y0 - r0 * sin(PI / 180 * 30);
+    drawLine(xa, ya, xc, yc, color);
+    drawLine(xc, yc, xe, ye, color);
+    drawLine(xe, ye, xa, ya, color);
+    drawLine(xb, yb, xd, yd, color);
+    drawLine(xd, yd, xf, yf, color);
+    drawLine(xf, yf, xb, yb, color);
+}
 // Draw a ellipse outline
 void Adafruit_GFX::drawEllipse(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t a, uint16_t color) {
     int16_t max_x = ((x1 > x2 ? x1 : x2) + a > 128 ? (x1 > x2 ? x1 : x2) + a : 128);
