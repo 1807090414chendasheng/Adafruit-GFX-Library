@@ -369,7 +369,6 @@ void Adafruit_GFX::fillRoundRect(int16_t x, int16_t y, int16_t w,
     fillCircleHelper(x+r    , y+r, r, 2, h-2*r-1, color);
     endWrite();
 }
-
 // Draw a Pentagram
 void Adafruit_GFX::drawPentagram(int16_t x0, int16_t y0,
         int16_t r0, uint16_t color) {
@@ -394,7 +393,33 @@ void Adafruit_GFX::drawPentagram(int16_t x0, int16_t y0,
 	drawLine(xb, yb, xe, ye, color);
 	drawLine(xd, yd, xe, ye, color);
 }
+// Draw a Mouse
+void Adafruit_GFX::drawMouse(int16_t x0, int16_t y0,
+        int16_t r0, int16_t r1,int16_t r2,uint16_t color) {
 
+    int x1, y1;
+    int x2, y2;
+    int x3, y3;
+    int x4, y4;
+    int a, r3;
+    a = r0 + r1;
+    r3 = r2 * 2;
+    x1 = x0 - a * cos(PI / 180 * 60);
+    y1 = y0 + a * cos(PI / 180 * 30);
+    x2 = x1 + a;
+    y2 = y1;
+    x3 = (x0 + x1)/2 ;
+    y3 = (y0 + y1)/2 ;
+    x4 = (x0 + x2)/2 ;
+    y4 = (y0 + y2)/2 ;
+    drawCircle(x0,y0,r3,color);
+    drawCircle(x0,y0,r0,color);
+    drawCircle(x1,y1,r1,color);
+    drawCircle(x2,y2,r1,color);
+    drawCircle(x3,y3,r2,color);
+    drawCircle(x4,y4,r2,color);
+
+}
 // Draw a ellipse outline
 void Adafruit_GFX::drawEllipse(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t a, uint16_t color) {
     int16_t max_x = ((x1 > x2 ? x1 : x2) + a > 128 ? (x1 > x2 ? x1 : x2) + a : 128);
